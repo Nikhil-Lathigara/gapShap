@@ -42,10 +42,6 @@ function App() {
           element={!authUser ? <LoginPage /> : <Navigate to="/" />}
         ></Route>
         <Route
-          path="/settings"
-          element={ <SettingPage />}
-        ></Route>
-        <Route
           path="/profile"
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         ></Route>
