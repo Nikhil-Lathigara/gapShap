@@ -6,17 +6,17 @@ import { Users } from "lucide-react";
 
 const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useChatStore();
-
-  const { onlineUsers } = useAuthStore();
+  const { authUser, onlineUsers } = useAuthStore(); // Get authUser from useAuthStore
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
+  // Filter out the logged-in user
   const filteredUsers = showOnlineOnly
-    ? users.filter((user) => onlineUsers.includes(user._id))
-    : users;
+    ? users.filter((user) => onlineUsers.includes(user._id) && user._id !== authUser._id)
+    : users.filter((user) => user._id !== authUser._id);
 
   if (isUsersLoading) return <SidebarSkeleton />;
 
@@ -84,4 +84,5 @@ const Sidebar = () => {
     </aside>
   );
 };
+
 export default Sidebar;
