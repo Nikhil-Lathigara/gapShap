@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["*","https://gapshap-avee.onrender.com","http://localhost:5174"],
-    credentials: true,
-  })
+  origin: ["*","https://gapshap-avee.onrender.com","http://localhost:5174"],
+  credentials: true,
+})
 );
 
 app.use("/api/auth", authRoutes);
